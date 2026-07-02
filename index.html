@@ -96,6 +96,19 @@
   .flag{position:fixed;bottom:16px;right:16px;font-family:ui-monospace,monospace;font-size:10.5px;color:var(--inkDim);
     background:var(--raised2);border:1px solid var(--rule);padding:6px 10px;border-radius:6px;opacity:0;transition:opacity .4s;pointer-events:none;}
   .flag.show{opacity:1;}
+  .seg{display:flex;gap:6px;background:var(--raised);border:1px solid var(--rule);border-radius:9px;padding:4px;margin-bottom:14px;}
+  .segBtn{flex:1;background:transparent;border:none;color:var(--inkDim);font-family:ui-monospace,monospace;
+    font-size:12.5px;padding:9px 4px;border-radius:6px;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;}
+  .segBtn.on{background:var(--paper);color:var(--gold);}
+  .focusSummary{font-family:ui-monospace,monospace;font-size:12px;color:var(--inkDim);margin:0 2px 14px;}
+  .fGroup{border:1px solid var(--rule);border-radius:10px;margin-bottom:14px;overflow:hidden;background:var(--raised);}
+  .fGroupHead{display:flex;align-items:center;gap:9px;padding:11px 13px;border-bottom:1px solid var(--rule);cursor:pointer;}
+  .fGoalTitle{flex:1;min-width:0;font-family:Georgia,serif;font-size:14.5px;font-weight:600;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fCat{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--inkDim);flex-shrink:0;}
+  .fGroup .row{padding:10px 13px;}
+  .fActText{flex:1;font-size:14px;line-height:1.35;padding-top:1px;}
+  .fActText.done{text-decoration:line-through;color:var(--inkDim);}
 </style>
 </head>
 <body>
@@ -103,11 +116,13 @@
   <div class="eyebrow">Ledger &mdash; H2 2026</div>
   <h1>The Second Half, Laid Bare</h1>
   <div class="tabs">
-    <button class="tab active" data-tab="board">Board</button>
+    <button class="tab active" data-tab="focus">Focus</button>
+    <button class="tab" data-tab="board">Board</button>
     <button class="tab" data-tab="drill">Drill-down</button>
     <button class="tab" data-tab="charts">Charts</button>
   </div>
-  <div id="board" class="view active"></div>
+  <div id="focus" class="view active"></div>
+  <div id="board" class="view"></div>
   <div id="drill" class="view"></div>
   <div id="charts" class="view"></div>
   <div class="footer">Everything saves automatically on this device</div>
@@ -147,7 +162,7 @@ const store={
   }
 };
 
-let data=SEED, currentTab="board", drill=null, saveT=null;
+let data=SEED, currentTab="focus", drill=null, saveT=null, focusCad="daily";
 function flag(){const f=document.getElementById("flag");f.classList.add("show");clearTimeout(f._t);f._t=setTimeout(()=>f.classList.remove("show"),900);}
 function save(){clearTimeout(saveT);saveT=setTimeout(async()=>{await store.set(KEY,JSON.stringify(data));flag();},300);}
 async function load(){const v=await store.get(KEY);if(v){try{const p=JSON.parse(v);if(p&&p.cats)data=p;}catch(e){}}render();}
@@ -263,8 +278,41 @@ function renderCharts(){
   el.innerHTML=h;
 }
 
+function renderFocus(){
+  const el=document.getElementById("focus");
+  const cads=[["daily","Daily"],["weekly","Weekly"],["monthly","Monthly"]];
+  let groups=[], total=0, done=0;
+  data.cats.forEach(c=>c.goals.forEach(gg=>{
+    const list=gg.actions.filter(a=>a.cadence===focusCad);
+    if(list.length){groups.push({cat:c,goal:gg,list});list.forEach(a=>{total++;if(a.done)done++;});}
+  }));
+  let h=`<div class="seg">`;
+  cads.forEach(([k,lbl])=>{h+=`<button class="segBtn ${focusCad===k?'on':''}" data-act="focusCad" data-cad="${k}">${lbl}</button>`;});
+  h+=`</div>`;
+  const label=focusCad==="daily"?"today":focusCad==="weekly"?"this week":"this month";
+  h+=`<div class="focusSummary">${total?`${done} of ${total} done \u00b7 ${label}`:`Nothing scheduled ${label} yet`}</div>`;
+  if(!total){
+    h+=`<div class="empty">No ${focusCad} actions yet.<br>Open a goal in <b>Drill-down</b> and add ${focusCad} actions \u2014 they'll all gather here.</div>`;
+  }else{
+    groups.forEach(gr=>{
+      h+=`<div class="fGroup"><div class="fGroupHead" data-act="drill" data-c="${gr.cat.id}" data-g="${gr.goal.id}">
+        <span class="dot" style="background:${gr.cat.color}"></span>
+        <span class="fGoalTitle">${esc(gr.goal.title.length>50?gr.goal.title.slice(0,50)+'\u2026':gr.goal.title)}</span>
+        <span class="fCat">${esc(gr.cat.name)}</span></div>`;
+      gr.list.forEach(a=>{
+        h+=`<div class="row">
+          <button class="check ${a.done?'on':''}" style="${a.done?`background:${gr.cat.color};border-color:${gr.cat.color}`:''}" data-act="actToggle" data-c="${gr.cat.id}" data-g="${gr.goal.id}" data-a="${a.id}">${a.done?'\u2713':''}</button>
+          <span class="fActText ${a.done?'done':''}">${esc(a.title||'(untitled action)')}</span></div>`;
+      });
+      h+=`</div>`;
+    });
+  }
+  el.innerHTML=h;
+}
+
 function render(){
-  if(currentTab==="board")renderBoard();
+  if(currentTab==="focus")renderFocus();
+  else if(currentTab==="board")renderBoard();
   else if(currentTab==="drill")renderDrill();
   else renderCharts();
 }
@@ -291,6 +339,7 @@ document.body.addEventListener("click",e=>{
   else if(act==="actToggle"){const a=findGoal(c,gid).actions.find(x=>x.id===aid);a.done=!a.done;save();render();}
   else if(act==="actDel"){const gg=findGoal(c,gid);gg.actions=gg.actions.filter(x=>x.id!==aid);save();render();}
   else if(act==="actAdd"){findGoal(c,gid).actions.push({id:uid(),title:"",cadence:b.dataset.cad,done:false});save();render();}
+  else if(act==="focusCad"){focusCad=b.dataset.cad;render();}
 });
 
 document.body.addEventListener("input",e=>{
