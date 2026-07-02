@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ledger</title>
+<meta name="theme-color" content="#1B1E23">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ledger">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAD+0lEQVR4nO3cvapUVxjH4TWDIDmQSUwKP7E5VxByC4Jgmy6FZW7ANqlS5DIEC7GxsA+kCaTJHQQb8asKQZMiTY5FUEadObNnz1r743+ep5WzZx348frOMGctysCuXj8+Gfo1Gc+zJ48XQ75e8xcTMOtaB97k4SKmixZxV32gkOmjZthVHiRkaqgR9kEPEDItHBL2su8PiplWDmmrV9BiprW+je012oXMGPZZQTpPaDEzln3a6xS0mBlb1wZ3Bi1mpqJLi70/5YApOjVo05mp2dXk1qDFzFSd1ubGoMXM1G1r1A5NlI+CNp2Zi02tmtBEeS9o05m5+bBZE5oo74I2nZmr9XZNaKIImijLUqwbzN/bhk1oogiaKIImysL+TBITmiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoopwb+wBDWB0ty907F8c+xlY/Pfiz/P7Hv2MfI4IJTRRBE0XQRBE0UQRNFNcYrPnq+Hz5/tsvqj3v3s+vyqPf/qn2PHYzoYkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoInS/H7oS1eutX6Jai58eVJK+a/a8z5dfV4uXblQ7XkJXj5/2vT5zYNu/QvUdPmT86WUeleBvX71V3n53FVgQ7JyEEXQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0ERxL8ca93K0516OAbmXY/6aB83wbn59VL679dnGf3v469/l/i+vBz7RcOzQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRTf5Wjo9o1VuX1jNfYxzpQzEfTqaFnu3rk49jEYgJWDKIImiqCJImiiCJooi6vXj0/GPgTUYkITRdBEETRRXDTDoFw0A3uwchBF0EQRNFEETZS470M//OHy2EeYlW9+fDH2EaoyoYniuxxEMaGJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKi2YYVOt7WhallOKvVkjw7MnjhZWDKIImiqCJsizl/91j7IPAId42bEITRdBEeRe0tYO5Wm/XhCbKe0Gb0szNh82a0ET5KGhTmrnY1KoJTZSNQZvSTN22RrdOaFEzVae1eerKIWqmZleTdmii7AzalGYqurTYaUKLmrF1bbDzyiFqxrJPe70i9TeIDKHPEO31ptC0prW+jfX+lEPUtHJIW1WitIJQQ40hWXXKCps+av5v32RtEDZdtFhbm+/B4mZd6/deg7+xE/jZMvSHB28A9qTbWI6UUAkAAAAASUVORK5CYII=">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAD+0lEQVR4nO3cvapUVxjH4TWDIDmQSUwKP7E5VxByC4Jgmy6FZW7ANqlS5DIEC7GxsA+kCaTJHQQb8asKQZMiTY5FUEadObNnz1r743+ep5WzZx348frOMGctysCuXj8+Gfo1Gc+zJ48XQ75e8xcTMOtaB97k4SKmixZxV32gkOmjZthVHiRkaqgR9kEPEDItHBL2su8PiplWDmmrV9BiprW+je012oXMGPZZQTpPaDEzln3a6xS0mBlb1wZ3Bi1mpqJLi70/5YApOjVo05mp2dXk1qDFzFSd1ubGoMXM1G1r1A5NlI+CNp2Zi02tmtBEeS9o05m5+bBZE5oo74I2nZmr9XZNaKIImijLUqwbzN/bhk1oogiaKIImysL+TBITmiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoopwb+wBDWB0ty907F8c+xlY/Pfiz/P7Hv2MfI4IJTRRBE0XQRBE0UQRNFNcYrPnq+Hz5/tsvqj3v3s+vyqPf/qn2PHYzoYkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoInS/H7oS1eutX6Jai58eVJK+a/a8z5dfV4uXblQ7XkJXj5/2vT5zYNu/QvUdPmT86WUeleBvX71V3n53FVgQ7JyEEXQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0ERxL8ca93K0516OAbmXY/6aB83wbn59VL679dnGf3v469/l/i+vBz7RcOzQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRTf5Wjo9o1VuX1jNfYxzpQzEfTqaFnu3rk49jEYgJWDKIImiqCJImiiCJooi6vXj0/GPgTUYkITRdBEETRRXDTDoFw0A3uwchBF0EQRNFEETZS470M//OHy2EeYlW9+fDH2EaoyoYniuxxEMaGJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKi2YYVOt7WhallOKvVkjw7MnjhZWDKIImiqCJsizl/91j7IPAId42bEITRdBEeRe0tYO5Wm/XhCbKe0Gb0szNh82a0ET5KGhTmrnY1KoJTZSNQZvSTN22RrdOaFEzVae1eerKIWqmZleTdmii7AzalGYqurTYaUKLmrF1bbDzyiFqxrJPe70i9TeIDKHPEO31ptC0prW+jfX+lEPUtHJIW1WitIJQQ40hWXXKCps+av5v32RtEDZdtFhbm+/B4mZd6/deg7+xE/jZMvSHB28A9qTbWI6UUAkAAAAASUVORK5CYII=">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTGVkZ2VyIiwic2hvcnRfbmFtZSI6IkxlZGdlciIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMUIxRTIzIiwidGhlbWVfY29sb3IiOiIjMUIxRTIzIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBZ0FBQUFJQUNBWUFBQUQwZU5UNkFBQU0ra2xFUVZSNG5PM2RzWTRkWnhtQTRUbVJVYVNnV0VtMzJKWWJYd08zRUVITkZVVGlHaUlhS2k2QU80QWlFaDFVVUVCTkF6MWxtc2d4TGlOSEZsVzBGTkVteDg3dWVzK2VNK2VmbWZkNUxzRDZaNXJ2blcvbXJIY1RzM244OU5ubDZETUFyTmxYWDM2eEczMkdyWEpqajJUSUE0d2hEbzdqNWgzQXNBZFlObEZ3ZDI3VUxReDhnSFVUQkRkelkvWVkrQURiSmdoK2tMOFJoajVBVXowR3NoZHY4QU13VGQwUVNGMjBvUS9BYlVveGtMaFFneCtBUXhSQ1lOTVhhUEFEY0l3dGg4QW1MOHpnQitDVXRoZ0NtN29nZ3grQU9XMHBCRFp4SVFZL0FPZTBoUkJZOVFVWS9BQ010T1lRZUcvMEFlN0w4QWRndERYUG90V1Z5NXB2TmdEYnRiWnR3S28yQUlZL0FFdTF0aG0xaWxwWjIwMEZvRzBOMjRERmJ3QU1md0RXWmcyemE5RUJzSVliQ0FEWFdmb01XK1NLWXVrM0RRQU9zY1JYQW92YkFCaitBR3pORW1mYm9nSmdpVGNJQUU1aGFUTnVNUUd3dEJzREFLZTJwRmszL0ozRWttNEdBSnpMNk84Q2htNEFESDhBcWtiUHdHRUJNUHJDQVdDMGtiTndTQUFZL2dEd25WRXo4ZXdCWVBnRHdKdEd6TWF6Qm9EaER3RFhPL2VNUEZzQUdQNEFjTHR6enNxekJJRGhEd0IzYzY2Wk9Yc0FHUDRBY0poenpNN0YvQ1ZBQU9COFpnMEFULzhBY0Q5eno5RFpBc0R3QjREanpEbExad2tBd3g4QVRtT3VtWHJ5QUREOEFlQzA1cGl0UGdJRWdLQ1RCb0NuZndDWXg2bG43TWtDd1BBSGdIbWRjdGFlSkFBTWZ3QTRqMVBOWE44QUFFRFEwUUhnNlI4QXp1c1VzL2VvQUREOEFXQ01ZMmV3VndBQUVIVHZBUEQwRHdCakhUT0w3eFVBaGo4QUxNTjlaN0pYQUFBUWRIQUFlUG9IZ0dXNXoyeTJBUUNBb0lNQ3dOTS9BQ3pUb1RQYUJnQUFndTRjQUo3K0FXRFpEcG5WTmdBQUVIU25BUEQwRHdEcmNOZVpiUU1BQUVIdkRBQlAvd0N3TG5lWjNUWUFBQkIwYXdCNCtnZUFkWHJYRExjQkFJQWdBUUFBUVRjR2dQVS9BS3piYmJQY0JnQUFncTROQUUvL0FMQU5OODEwR3dBQUNCSUFBQkQwb3dDdy9nZUFiYmx1dHRzQUFFQ1FBQUNBSUFFQUFFRnZCSUQzL3dDd1RXL1BlQnNBQUFnU0FBQVFKQUFBSU9qN0FQRCtId0MyYlgvVzJ3QUFRSkFBQUlBZ0FRQUFRUUlBQUlMZW15WWZBQUpBeGRYTXR3RUFnQ0FCQUFCQkFnQUFnZ1FBQUFRSkFBQUlFZ0FBRUxUekUwQUE2TEVCQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUU5DRDBRZUF0MzMrMmNYMHdmdTcwY2ZnbnY3Mjc5ZlRILzcrYXZReGdIZXdBUUNBSUFFQUFFRUNBQUNDQkFBQUJBa0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQW9OM2pwODh1Ung4Q1J2clRieTZtOTMreUczMk0yZnp4SDYrbXYvN3I5ZWhqQUF0akF3QUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlDZ0I2TVBzRlFYajU2TVBnSm5zdHQ5Ty9vSXMvcnc0VWZUeGFPUFJ4OERobnI1NHZub0l5eU9EUUFBQkFrQUFBanlDdUFHMWtVZGw1Y1gwelR0Umg5ak50KzgrbnA2K2VMMTZHTUFDMk1EQUFCQkFnQUFnZ1FBQUFRSkFBQUlFZ0FBRUNRQUFDQklBQUJBa0FBQWdDQUJBQUJCQWdBQWdnUUFBQVFKQUFBSUVnQUFFQ1FBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBZ0FBZ2dRQUFBUUpBQUFJRWdBQUVDUUFBQ0JJQUFCQWtBQUFnQ0FCQUFCQkFnQUFnZ1FBQUFRSkFBQUlFZ0FBRUNRQUFDQklBQUJBa0FBQWdDQUJBQUJCQWdBQWdnUUFBQVFKQUFBSUVnQUFFQ1FBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBZ0FBZ2dRQUFBUUpBQUFJRWdBQUVDUUFBQ0JJQUFCQWtBQUFnQ0FCQUFCQkFnQUFnZ1FBQUFRSkFBQUlFZ0FBRUNRQUFDQklBQUJBa0FBQWdDQUJBQUJCQWdBQWdnUUFBQVFKQUFBSUVnQUFFQ1FBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBZ0FBZ2g2TVBzQlNYVHg2TXZvSW5NbHU5KzNvSTh6cXc0Y2ZUUmVQUGg1OURCanE1WXZubzQrd09EWUFBQkFrQUFBZ3lDdUFHMWdYZFZ4ZVhrelR0QnQ5ak5sODgrcnI2ZVdMMTZPUHNUbS8vUGxQcDEvLzR1SEovcjNmLytYcjZaLy8rZC9KL2oxNEZ4c0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFnU0FBQVFKQUFBSUVnQUFFQ1FBQUNBSUFFQUFFRUNBQUNDQkFBQUJBa0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFROUdEMEFZQjVmZnJKdytuVFR4Nk9QZ2F3TURZQUFCQmtBOERpZlA3WnhmVEIrN3ZSeHdEWU5Cc0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFqYVBYNzY3SEwwSVFDQTg3SUJBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSWVqRDdBVWwwOGVqTDZDQUNjeU1zWHowY2ZZWEZzQUFBZ1NBQUFRSkJYQURld0xnSmd5MndBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBZ0FBZ2dRQUFBUUpBQUFJRWdBQUVDUUFBQ0JJQUFCQWtBQUFnQ0FCQUFCQi9qTWdadkhuMy81czlCRmdVMzcxdS8rT1BnSWJZd01BQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRURRN3ZIVFo1ZWpEd0VBbkpjTkFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFdmZmVmwxL3NSaDhDQURpZnI3NzhZbWNEQUFCQkFnQUFnZ1FBQUFROUdIMkFwYnA0OUdUMEVRQTRrWmN2bm84K3d1TFlBQUJBa0FBQWdLRHZmd0w0K09tenk1RUhBUURtZC9YemZ4c0FBQWdTQUFBUUpBQUFJRWdBQUVEUTl3SGcvd1FBZ0czYm4vVTJBQUFRSkFBQUlFZ0FBRURRR3dIZ093QUEyS2EzWjd3TkFBQUVDUUFBQ0JJQUFCRDBvd0R3SFFBQWJNdDFzOTBHQUFDQ0JBQUFCRjBiQUY0REFNQTIzRFRUYlFBQUlPakdBTEFGQUlCMXUyMlcyd0FBUUpBQUFJQ2dXd1BBYXdBQVdLZDN6WEFiQUFBSWVtY0EyQUlBd0xyY1pYYmJBQUJBMEowQ3dCWUFBTmJocmpQYkJnQUFndTRjQUxZQUFMQnNoOHhxR3dBQUNEb29BR3dCQUdDWkRwM1JOZ0FBRUhSd0FOZ0NBTUN5M0djMjJ3QUFRTkM5QXNBV0FBQ1c0YjR6K2Q0YkFCRUFBR01kTTR1OUFnQ0FvS01Dd0JZQUFNWTRkZ1lmdlFFUUFRQndYcWVZdlY0QkFFRFFTUUxBRmdBQXp1TlVNL2RrR3dBUkFBRHpPdVdzUGVrckFCRUFBUE00OVl6MURRQUFCSjA4QUd3QkFPQzA1cGl0czJ3QVJBQUFuTVpjTTNXMlZ3QWlBQUNPTStjc25mVWJBQkVBQVBjejl3ejFFU0FBQk0wZUFMWUFBSENZYzh6T3Myd0FSQUFBM00yNVp1YlpYZ0dJQUFDNDNUbG41Vm0vQVJBQkFIQzljOC9JczM4RUtBSUE0RTBqWnVPUVh3R0lBQUQ0enFpWk9PeG5nQ0lBZ0xxUnMzRG8zd0VRQVFCVWpaNkJpeG5BajU4K3V4eDlCZ0NZMitqQmYyVXhmd2x3S1RjRUFPYXlwRm0zbUFDWXBtWGRHQUE0cGFYTnVFVUZ3RFF0N3dZQndMR1dPTnNXZDZCOXZnc0FZTTJXT1BpdkxHNERzRy9KTnc0QWJyUDBHYmJvQUppbTVkOUFBSGpiR21iWDRnKzR6eXNCQUpac0RZUC95dUkzQVB2V2RHTUJhRm5iakZyVllmZlpCZ0N3QkdzYi9GZFd0UUhZdDlZYkRzQjJySGtXcmZiZysyd0RBRGluTlEvK0s2dS9nSDFDQUlBNWJXSHdYOW5NaGV3VEFnQ2MwcFlHLzVYTlhkQStJUURBTWJZNCtLOXM5c0wyQ1FFQURySGx3WDlsOHhlNFR3Z0FjSnZDNEwrU3VkQzNpUUVBcHFrMTlQY2xMM3FmRUFCb3FnNytLK21MZjVzWUFOaTIrdERmNTBiY1FoQUFySnVCZnpNMzVnQ0NBR0RaRFB5N2M2T09KQW9BeGpEc2orUG16VWdjQUJ6SGtKL1Avd0VtK3dkMFF0YnU5QUFBQUFCSlJVNUVya0pnZ2c9PSIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTFFBQUFDMENBWUFBQUE5elFZeUFBQUQrMGxFUVZSNG5PM2N2YXBVVnhqSDRUV0RJRG1RU1V3S1A3RTVWeEJ5QzRKZ215NkZaVzdBTnFsUzVESUVDN0d4c0Era0NhVEpIUVFiOGFzS1FaTWlUWTVGVUVhZE9iTm56MXI3NDMrZXA1V3paeDM0OGZyT01HY3R5c0N1WGo4K0dmbzFHYyt6SjQ4WFE3NWU4eGNUTU90YUI5N2s0U0ttaXhaeFYzMmdrT21qWnRoVkhpUmthcWdSOWtFUEVESXRIQkwyc3U4UGlwbFdEbW1yVjlCaXByVytqZTAxMm9YTUdQWlpRVHBQYURFemxuM2E2eFMwbUJsYjF3WjNCaTFtcHFKTGk3MC81WUFwT2pWbzA1bXAyZFhrMXFERnpGU2QxdWJHb01YTTFHMXIxQTVObEkrQ05wMlppMDJ0bXRCRWVTOW8wNW01K2JCWkU1b283NEkyblptcjlYWk5hS0lJbWlqTFVxd2J6Ti9iaGsxb29naWFLSUlteXNMK1RCSVRtaWlDSm9xZ2lTSm9vZ2lhS0lJbWlxQ0pJbWlpQ0pvb2dpYUtvSWtpYUtJSW1paUNKb3FnaVNKb29wd2Ird0JEV0IwdHk5MDdGOGMreGxZL1BmaXovUDdIdjJNZkk0SUpUUlJCRTBYUVJCRTBVUVJORk5jWXJQbnErSHo1L3RzdnFqM3Yzcyt2eXFQZi9xbjJQSFl6b1lraWFLSUltaWlDSm9xZ2lTSm9vZ2lhS0lJbWlxQ0pJbWlpQ0pvb2dpYUtvSWtpYUtJSW1paUNKb3FnaVNKb29naWFLSUltaXFDSkltaWlDSm9vZ2lhS29JblMvSDdvUzFldXRYNkphaTU4ZVZKSythL2E4ejVkZlY0dVhibFE3WGtKWGo1LzJ2VDV6WU51L1F2VWRQbVQ4NldVZWxlQnZYNzFWM241M0ZWZ1E3SnlFRVhRUkJFMFVRUk5GRUVUUmRCRUVUUlJCRTBVUVJORjBFUVJORkVFVFJSQkUwWFFSQkUwVVFSTkZFRVRSZEJFRVRSUkJFMFVRUk5GMEVSeEw4Y2E5M0swNTE2T0FibVhZLzZhQjgzd2JuNTlWTDY3OWRuR2YzdjQ2OS9sL2krdkJ6N1JjT3pRUkJFMFVRUk5GRUVUUmRCRUVUUlJCRTBVUVJORjBFUVJORkVFVFJUZjVXam85bzFWdVgxak5mWXh6cFF6RWZUcWFGbnUzcms0OWpFWWdKV0RLSUltaXFDSkltaWlDSm9vaTZ2WGowL0dQZ1RVWWtJVFJkQkVFVFJSWERURG9GdzBBM3V3Y2hCRjBFUVJORkVFVFpTNDcwTS8vT0h5MkVlWWxXOStmREgyRWFveW9Zbml1eHhFTWFHSkltaWlDSm9vZ2lhS29Ja2lhS0lJbWlpQ0pvcWdpU0pvb2dpYUtJSW1pcUNKSW1paUNKb29naWFLaTJZWVZPdDdXaGFsbE9LdlZranc3TW5qaFpXREtJSW1pcUNKc2l6bC85MWo3SVBBSWQ0MmJFSVRSZEJFZVJlMHRZTzVXbS9YaENiS2UwR2Iwc3pOaDgyYTBFVDVLR2hUbXJuWTFLb0pUWlNOUVp2U1ROMjJScmRPYUZFelZhZTFlZXJLSVdxbVpsZVRkbWlpN0F6YWxHWXF1clRZYVVLTG1yRjFiYkR6eWlGcXhySlBlNzBpOVRlSURLSFBFTzMxcHRDMHByVytqZlgrbEVQVXRISklXMVdpdElKUVE0MGhXWFhLQ3BzK2F2NXYzMlJ0RURaZHRGaGJtKy9CNG1aZDYvZGVnNyt4RS9qWk12U0hCMjhBOXFUYldJNlVVQWtBQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTgweDE4MCIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+<style>
+  :root{
+    --ink:#EDE7D9;--inkDim:#A9A290;--faint:#565b62;--paper:#1B1E23;
+    --raised:#22262D;--raised2:#282D35;--rule:#33383F;
+    --gold:#C89B3C;--teal:#4F8A7B;--rust:#C1694A;--slate:#6E8BA6;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:system-ui,-apple-system,sans-serif;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);}
+  .wrap{max-width:820px;margin:0 auto;padding:22px 16px 70px;}
+  .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.14em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+  h1{font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:30px;margin:0 0 18px;line-height:1.1;}
+  .tabs{display:flex;gap:6px;margin-bottom:20px;border-bottom:1px solid var(--rule);padding-bottom:2px;}
+  .tab{flex:1;background:transparent;border:none;color:var(--inkDim);font-family:ui-monospace,monospace;
+    font-size:12.5px;letter-spacing:.05em;padding:10px 4px;cursor:pointer;
+    border-bottom:2px solid transparent;text-transform:uppercase;}
+  .tab.active{color:var(--gold);border-bottom:2px solid var(--gold);}
+  .view{display:none;} .view.active{display:block;}
+  .card{border:1px solid var(--rule);border-radius:10px;margin-bottom:18px;overflow:hidden;background:var(--raised);}
+  .cardHead{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--rule);gap:8px;}
+  .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .catName{display:block;width:100%;background:transparent;border:none;color:var(--ink);
+    font-family:Georgia,serif;font-size:18px;font-weight:600;outline:none;padding:0;}
+  .catTag{display:block;width:100%;background:transparent;border:none;color:var(--inkDim);
+    font-family:ui-monospace,monospace;font-size:10.5px;letter-spacing:.05em;outline:none;padding:2px 0 0;text-transform:uppercase;}
+  .pill{font-family:ui-monospace,monospace;font-size:11px;color:var(--inkDim);background:var(--paper);
+    border:1px solid var(--rule);border-radius:20px;padding:3px 9px;white-space:nowrap;}
+  .iconBtn{background:transparent;border:1px solid var(--rule);color:var(--inkDim);border-radius:6px;
+    width:26px;height:26px;cursor:pointer;font-size:12px;line-height:1;flex-shrink:0;}
+  .bar{height:3px;background:var(--rule);}
+  .barFill{height:100%;transition:width .3s;}
+  .rowsWrap{padding:4px 6px;}
+  .row{display:flex;align-items:flex-start;gap:11px;padding:10px 8px;border-bottom:1px solid var(--rule);}
+  .row:last-child{border-bottom:none;}
+  .check{width:19px;height:19px;border-radius:5px;border:1.5px solid var(--inkDim);background:transparent;
+    color:#0d1310;font-weight:700;font-size:12px;cursor:pointer;flex-shrink:0;margin-top:2px;line-height:1;padding:0;}
+  .check.on{color:#0d1310;}
+  .goalTitle{width:100%;background:transparent;border:none;color:var(--ink);font-size:14.5px;line-height:1.35;
+    resize:none;outline:none;font-family:inherit;overflow:hidden;}
+  .goalTitle.done{text-decoration:line-through;color:var(--inkDim);}
+  .meta{display:flex;align-items:center;gap:12px;margin-top:5px;flex-wrap:wrap;}
+  .metric{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--inkDim);display:flex;align-items:center;gap:3px;}
+  .metricDim{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--faint);}
+  .numInput{width:70px;background:var(--paper);border:1px solid var(--rule);border-radius:5px;color:var(--ink);
+    font-family:ui-monospace,monospace;font-size:11.5px;padding:3px 6px;outline:none;}
+  .linkBtn{background:transparent;border:none;font-family:ui-monospace,monospace;font-size:11.5px;cursor:pointer;padding:0;}
+  .drillLink{color:var(--gold);} .delLink{color:var(--faint);}
+  .addRow{width:100%;background:transparent;border:1px dashed var(--rule);color:var(--inkDim);border-radius:7px;
+    padding:9px;cursor:pointer;font-family:ui-monospace,monospace;font-size:12px;margin-top:6px;}
+  .addCat{width:100%;background:var(--raised);border:1px dashed var(--rule);color:var(--gold);border-radius:10px;
+    padding:13px;cursor:pointer;font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.05em;}
+  .pickLabel{font-family:ui-monospace,monospace;font-size:11px;color:var(--inkDim);text-transform:uppercase;
+    letter-spacing:.08em;margin-bottom:8px;}
+  select{width:100%;background:var(--paper);border:1px solid var(--rule);border-radius:7px;color:var(--ink);
+    font-size:14px;padding:10px;outline:none;}
+  .empty{color:var(--inkDim);font-size:13.5px;text-align:center;padding:24px 12px;border:1px dashed var(--rule);
+    border-radius:10px;line-height:1.5;}
+  .drillTitle{font-family:Georgia,serif;font-size:20px;font-weight:600;margin:0 0 14px;line-height:1.25;}
+  .cadTitle{font-family:Georgia,serif;font-size:16px;font-weight:600;text-transform:capitalize;}
+  .actionInput{flex:1;background:transparent;border:none;color:var(--ink);font-size:14px;outline:none;font-family:inherit;margin-top:2px;}
+  .actionInput.done{text-decoration:line-through;color:var(--inkDim);}
+  .chartTitle{font-family:Georgia,serif;font-size:17px;font-weight:600;}
+  .chartSub{font-family:ui-monospace,monospace;font-size:11px;color:var(--inkDim);margin-top:3px;margin-bottom:12px;}
+  .cbar{display:flex;align-items:center;gap:10px;margin:9px 0;}
+  .cbar .lbl{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--inkDim);width:120px;flex-shrink:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .cbar .track{flex:1;height:20px;background:var(--paper);border-radius:5px;overflow:hidden;position:relative;}
+  .cbar .fill{height:100%;border-radius:5px;transition:width .4s;}
+  .cbar .val{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--ink);width:58px;text-align:right;flex-shrink:0;}
+  .revrow{margin:12px 0;}
+  .revrow .rlbl{font-size:12.5px;color:var(--ink);margin-bottom:5px;}
+  .revrow .rtrack{height:14px;background:var(--paper);border-radius:4px;overflow:hidden;position:relative;}
+  .revrow .rtarget{position:absolute;left:0;top:0;height:100%;background:var(--rule);border-radius:4px;width:100%;}
+  .revrow .rcur{position:absolute;left:0;top:0;height:100%;border-radius:4px;transition:width .4s;}
+  .revrow .rnums{font-family:ui-monospace,monospace;font-size:10.5px;color:var(--inkDim);margin-top:4px;}
+  .legend{display:flex;gap:16px;justify-content:center;padding:8px 0 0;font-family:ui-monospace,monospace;
+    font-size:11px;color:var(--inkDim);}
+  .legDot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;}
+  .footer{margin-top:30px;text-align:center;color:var(--inkDim);font-size:11.5px;font-family:ui-monospace,monospace;}
+  .flag{position:fixed;bottom:16px;right:16px;font-family:ui-monospace,monospace;font-size:10.5px;color:var(--inkDim);
+    background:var(--raised2);border:1px solid var(--rule);padding:6px 10px;border-radius:6px;opacity:0;transition:opacity .4s;pointer-events:none;}
+  .flag.show{opacity:1;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Ledger &mdash; H2 2026</div>
+  <h1>The Second Half, Laid Bare</h1>
+  <div class="tabs">
+    <button class="tab active" data-tab="board">Board</button>
+    <button class="tab" data-tab="drill">Drill-down</button>
+    <button class="tab" data-tab="charts">Charts</button>
+  </div>
+  <div id="board" class="view active"></div>
+  <div id="drill" class="view"></div>
+  <div id="charts" class="view"></div>
+  <div class="footer">Everything saves automatically on this device</div>
+</div>
+<div class="flag" id="flag">saved</div>
+
+<script>
+const COLORS=["#4F8A7B","#C1694A","#6E8BA6","#C89B3C","#8E7CC3","#4F9EBF"];
+const uid=()=>Math.random().toString(36).slice(2,9);
+function g(title,target=null,num=false){return{id:uid(),title,done:false,notes:"",tracksNum:num,target,current:"",actions:[]};}
+const SEED={version:3,cats:[
+ {id:"twg",name:"TWG",color:"#4F8A7B",tag:"Core operating business",goals:[
+   g("P3,000 per day revenue",3000,true),g("P5,000 TT salary"),g("P5,000 director remuneration"),
+   g("Car wash \u2014 P400/day \u00d7 2 bays"),g("Buy farm land (through Legacy)"),g("Feeds milling")]},
+ {id:"justbots",name:"Just Bots",color:"#C1694A",tag:"Robotics / sessions",goals:[
+   g("P1,000 per day revenue",1000,true),g("10 monthly orders \u2014 hospitality clients",10,true),
+   g("50 corporate gifting deals",50,true)]},
+ {id:"foundations",name:"H2 2026 Foundations",color:"#6E8BA6",tag:"Personal & financial base",goals:[
+   g("ABSA down to P200k \u2014 only remaining obligation",200000,true),g("Emergency fund \u2014 P60k",60000,true),
+   g("P10k each cash allowance (disposable income)"),g("P50k Paige fund",50000,true),
+   g("Out-of-country trip"),g("AirBnB \u2014 Jerowe + Dikwidipi"),g("Start construction on farm home")]},
+ {id:"trigger",name:"Trigger Ready",color:"#C89B3C",tag:"Unlock conditions \u2014 hit these, then move",goals:[
+   g("P35,000 monthly revenue \u2014 casual players (non birthday / non corporate)",35000,true),
+   g("Cleared all obligations"),g("Paid back full shareholder loan"),g("P5,000 each salary"),
+   g("50 kids' birthday sessions",50,true),g("20 corporate sessions",20,true),g("6 in-home events",6,true)]}
+]};
+
+const KEY="ledger-h2-2026";
+const store={
+  async get(k){
+    if(window.storage){try{const r=await window.storage.get(k,false);return r?r.value:null;}catch(e){}}
+    try{return localStorage.getItem(k);}catch(e){return null;}
+  },
+  async set(k,v){
+    if(window.storage){try{await window.storage.set(k,v,false);return;}catch(e){}}
+    try{localStorage.setItem(k,v);}catch(e){}
+  }
+};
+
+let data=SEED, currentTab="board", drill=null, saveT=null;
+function flag(){const f=document.getElementById("flag");f.classList.add("show");clearTimeout(f._t);f._t=setTimeout(()=>f.classList.remove("show"),900);}
+function save(){clearTimeout(saveT);saveT=setTimeout(async()=>{await store.set(KEY,JSON.stringify(data));flag();},300);}
+async function load(){const v=await store.get(KEY);if(v){try{const p=JSON.parse(v);if(p&&p.cats)data=p;}catch(e){}}render();}
+
+const findCat=id=>data.cats.find(c=>c.id===id);
+const findGoal=(cid,gid)=>findCat(cid)?.goals.find(x=>x.id===gid);
+const catPct=c=>c.goals.length?Math.round(c.goals.filter(x=>x.done).length/c.goals.length*100):0;
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+/* ---- Board ---- */
+function renderBoard(){
+  const el=document.getElementById("board");
+  let h="";
+  data.cats.forEach(c=>{
+    h+=`<div class="card"><div class="cardHead">
+      <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
+        <span class="dot" style="background:${c.color}"></span>
+        <div style="flex:1;min-width:0">
+          <input class="catName" value="${esc(c.name)}" data-act="catName" data-c="${c.id}">
+          <input class="catTag" value="${esc(c.tag)}" data-act="catTag" data-c="${c.id}">
+        </div></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="pill">${c.goals.filter(x=>x.done).length}/${c.goals.length}</span>
+        <button class="iconBtn" data-act="delCat" data-c="${c.id}">\u2715</button>
+      </div></div>
+      <div class="bar"><div class="barFill" style="width:${catPct(c)}%;background:${c.color}"></div></div>
+      <div class="rowsWrap">`;
+    c.goals.forEach(goal=>{
+      const ad=goal.actions.filter(a=>a.done).length;
+      h+=`<div class="row" style="${goal.done?'opacity:.7':''}">
+        <button class="check ${goal.done?'on':''}" style="${goal.done?`background:${c.color};border-color:${c.color}`:''}" data-act="toggle" data-c="${c.id}" data-g="${goal.id}">${goal.done?'\u2713':''}</button>
+        <div style="flex:1;min-width:0">
+          <textarea class="goalTitle ${goal.done?'done':''}" rows="1" data-act="title" data-c="${c.id}" data-g="${goal.id}">${esc(goal.title)}</textarea>
+          <div class="meta">`;
+      if(goal.tracksNum){
+        h+=`<span class="metric">P<input class="numInput" value="${esc(goal.current)}" placeholder="0" data-act="current" data-c="${c.id}" data-g="${goal.id}"></span>
+             <span class="metricDim">/ target ${Number(goal.target).toLocaleString()}</span>`;
+      }
+      h+=`<button class="linkBtn drillLink" data-act="drill" data-c="${c.id}" data-g="${goal.id}">drill ${goal.actions.length?`(${ad}/${goal.actions.length})`:'\u2192'}</button>
+          <button class="linkBtn delLink" data-act="delGoal" data-c="${c.id}" data-g="${goal.id}">delete</button>
+          </div></div></div>`;
+    });
+    h+=`<button class="addRow" data-act="addGoal" data-c="${c.id}">+ Add goal</button></div></div>`;
+  });
+  h+=`<button class="addCat" data-act="addCat">+ Add category</button>`;
+  el.innerHTML=h;
+  el.querySelectorAll("textarea.goalTitle").forEach(autthide);
+}
+function autthide(t){t.style.height="auto";t.style.height=t.scrollHeight+"px";}
+
+/* ---- Drill ---- */
+function renderDrill(){
+  const el=document.getElementById("drill");
+  const cat=drill&&findCat(drill.c), goal=cat&&findGoal(drill.c,drill.g);
+  let h=`<div class="card" style="padding:12px 14px;margin-bottom:16px">
+    <div class="pickLabel">Break down which goal?</div>
+    <select data-act="pick"><option value="" ${goal?'':'selected'} disabled>Choose a goal\u2026</option>`;
+  data.cats.forEach(c=>{h+=`<optgroup label="${esc(c.name)}">`;
+    c.goals.forEach(gg=>{const sel=goal&&gg.id===goal.id?'selected':'';h+=`<option value="${c.id}::${gg.id}" ${sel}>${esc(gg.title.slice(0,60))}</option>`;});
+    h+=`</optgroup>`;});
+  h+=`</select></div>`;
+  if(!goal){h+=`<div class="empty">Pick a goal above to set monthly, weekly and daily actions.</div>`;}
+  else{
+    h+=`<div class="eyebrow" style="color:${cat.color};margin-bottom:10px">${esc(cat.name)}</div>
+        <h2 class="drillTitle">${esc(goal.title)}</h2>`;
+    ["monthly","weekly","daily"].forEach(cad=>{
+      const list=goal.actions.filter(a=>a.cadence===cad);
+      h+=`<div class="card"><div class="cardHead" style="border-bottom:none;padding-bottom:4px">
+        <div style="display:flex;align-items:center;gap:10px"><span class="dot" style="background:${cat.color}"></span>
+        <span class="cadTitle">${cad}</span></div>
+        <span class="pill">${list.filter(a=>a.done).length}/${list.length}</span></div>
+        <div style="padding:2px 6px 8px">`;
+      list.forEach(a=>{
+        h+=`<div class="row">
+          <button class="check ${a.done?'on':''}" style="${a.done?`background:${cat.color};border-color:${cat.color}`:''}" data-act="actToggle" data-c="${cat.id}" data-g="${goal.id}" data-a="${a.id}">${a.done?'\u2713':''}</button>
+          <input class="actionInput ${a.done?'done':''}" value="${esc(a.title)}" placeholder="New ${cad} action\u2026" data-act="actTitle" data-c="${cat.id}" data-g="${goal.id}" data-a="${a.id}">
+          <button class="iconBtn" data-act="actDel" data-c="${cat.id}" data-g="${goal.id}" data-a="${a.id}">\u2715</button></div>`;
+      });
+      h+=`<button class="addRow" data-act="actAdd" data-c="${cat.id}" data-g="${goal.id}" data-cad="${cad}">+ Add ${cad} action</button></div></div>`;
+    });
+  }
+  el.innerHTML=h;
+}
+
+/* ---- Charts ---- */
+function renderCharts(){
+  const el=document.getElementById("charts");
+  let h=`<div class="card"><div style="padding:14px 16px 4px">
+    <div class="chartTitle">Completion by category</div>
+    <div class="chartSub">share of goals ticked off in each area</div></div>
+    <div style="padding:4px 14px 16px">`;
+  data.cats.forEach(c=>{const p=catPct(c);
+    h+=`<div class="cbar"><span class="lbl">${esc(c.name)}</span>
+      <div class="track"><div class="fill" style="width:${p}%;background:${c.color}"></div></div>
+      <span class="val">${p}%</span></div>`;});
+  h+=`</div></div>`;
+
+  const rev=[];
+  data.cats.forEach(c=>c.goals.forEach(gg=>{if(gg.tracksNum&&gg.target){
+    const cur=parseFloat(String(gg.current).replace(/[^0-9.]/g,""))||0;
+    rev.push({name:gg.title,cur,target:Number(gg.target),color:c.color});}}));
+  h+=`<div class="card"><div style="padding:14px 16px 4px">
+    <div class="chartTitle">Revenue &amp; savings \u2014 current vs target</div>
+    <div class="chartSub">only goals with a Pula figure attached</div></div>
+    <div style="padding:4px 16px 8px">`;
+  if(!rev.length){h+=`<div class="empty">No numeric goals yet \u2014 add a target on the Board to see it here.</div>`;}
+  else{rev.forEach(r=>{const pct=Math.min(100,r.target?r.cur/r.target*100:0);
+    h+=`<div class="revrow"><div class="rlbl">${esc(r.name.length>44?r.name.slice(0,44)+'\u2026':r.name)}</div>
+      <div class="rtrack"><div class="rtarget"></div><div class="rcur" style="width:${pct}%;background:${r.color}"></div></div>
+      <div class="rnums">P${r.cur.toLocaleString()} of P${r.target.toLocaleString()} &nbsp;\u00b7&nbsp; ${Math.round(pct)}%</div></div>`;});}
+  h+=`</div><div class="legend"><span><span class="legDot" style="background:#33383F"></span>target</span>
+      <span><span class="legDot" style="background:#4F8A7B"></span>current</span></div></div>`;
+  el.innerHTML=h;
+}
+
+function render(){
+  if(currentTab==="board")renderBoard();
+  else if(currentTab==="drill")renderDrill();
+  else renderCharts();
+}
+
+/* ---- Events (delegated) ---- */
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+  currentTab=t.dataset.tab;
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===t));
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===currentTab));
+  render();
+}));
+
+document.body.addEventListener("click",e=>{
+  const b=e.target.closest("[data-act]"); if(!b)return;
+  const act=b.dataset.act, c=b.dataset.c, gid=b.dataset.g, aid=b.dataset.a;
+  if(act==="toggle"){const gg=findGoal(c,gid);gg.done=!gg.done;save();render();}
+  else if(act==="delGoal"){const cat=findCat(c);cat.goals=cat.goals.filter(x=>x.id!==gid);save();render();}
+  else if(act==="addGoal"){findCat(c).goals.push(g("New goal"));save();render();}
+  else if(act==="delCat"){data.cats=data.cats.filter(x=>x.id!==c);save();render();}
+  else if(act==="addCat"){const col=COLORS[data.cats.length%COLORS.length];data.cats.push({id:uid(),name:"New category",color:col,tag:"Tap to rename",goals:[]});save();render();}
+  else if(act==="drill"){drill={c,g:gid};currentTab="drill";
+    document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab==="drill"));
+    document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="drill"));render();}
+  else if(act==="actToggle"){const a=findGoal(c,gid).actions.find(x=>x.id===aid);a.done=!a.done;save();render();}
+  else if(act==="actDel"){const gg=findGoal(c,gid);gg.actions=gg.actions.filter(x=>x.id!==aid);save();render();}
+  else if(act==="actAdd"){findGoal(c,gid).actions.push({id:uid(),title:"",cadence:b.dataset.cad,done:false});save();render();}
+});
+
+document.body.addEventListener("input",e=>{
+  const b=e.target.closest("[data-act]"); if(!b)return;
+  const act=b.dataset.act, c=b.dataset.c, gid=b.dataset.g, aid=b.dataset.a;
+  if(act==="catName"){findCat(c).name=b.value;save();}
+  else if(act==="catTag"){findCat(c).tag=b.value;save();}
+  else if(act==="title"){findGoal(c,gid).title=b.value;autthide(b);save();}
+  else if(act==="current"){findGoal(c,gid).current=b.value;save();}
+  else if(act==="actTitle"){findGoal(c,gid).actions.find(x=>x.id===aid).title=b.value;save();}
+});
+
+document.body.addEventListener("change",e=>{
+  const b=e.target.closest("[data-act]"); if(!b||b.dataset.act!=="pick")return;
+  const[c,gid]=b.value.split("::");drill={c,g:gid};render();
+});
+
+load();
+</script>
+</body>
+</html>
